@@ -1,0 +1,40 @@
+package 作业1;
+
+import java.util.Scanner;
+
+public class 作业2 {
+	public static void main(String[] args) {
+		//定义变量
+		float pictureLength,pictureWidth;
+		float colouringCost;
+		float framsTypes;
+		float cardboardCost,glassCost;
+		String orderedColouring;
+		int crownsNumbers;
+		float crownsCost;
+		float framingCost;//总成本
+		
+		//变量赋值
+		Scanner scan = new Scanner(System.in);
+		System.out.println("请输入图片长度和宽度：");
+		pictureLength = scan.nextFloat();
+		pictureWidth = scan.nextFloat();
+		System.out.println("请输入相框的价位有0.1和0.15两种：");
+		framsTypes = scan.nextFloat();
+		System.out.println("请输入相框颜色：");
+		orderedColouring = scan.next();
+		System.out.println("请输入皇冠数量：");
+		crownsNumbers = scan.nextInt();
+		colouringCost = 0.1f;
+		cardboardCost = 0.02f;
+		glassCost = 0.07f;
+		crownsCost = 0.35f;
+		//数据处理
+		if(orderedColouring != "white")
+			framingCost = (framsTypes + colouringCost)*(pictureLength + pictureWidth) + cardboardCost + glassCost*pictureLength*pictureWidth + crownsNumbers*crownsCost;
+		else
+			framingCost = framsTypes*(pictureLength + pictureWidth) + cardboardCost + glassCost*pictureLength*pictureWidth + crownsNumbers*crownsCost;
+		//结果输出
+		System.out.println("总成本为："+framingCost);
+	}
+}
