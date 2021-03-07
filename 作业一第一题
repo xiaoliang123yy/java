@@ -1,0 +1,49 @@
+package 作业1;
+
+import java.util.Scanner;
+
+public class homework1 {
+	public static void main(String args[]) {
+		//定义变量
+		float fiftyCents = 0.5f;
+		float twentyCents = 0.2f;
+		float tenCents = 0.1f;
+		float fiveCents = 0.05f;
+		int oneDollars = 1;
+		int twoDollars = 2;
+		//每个可以兑换的数值
+		int oneMembers,twoMembers,fiftyMembers,twentyMembers,tenMembers,fiveMembers;
+		//各个钱数兑换的数量
+		float totalAmount;//总钱数
+		//变量赋值
+		Scanner scan = new Scanner(System.in);
+		System.out.println("请输入总钱数：");
+		totalAmount = scan.nextFloat();
+		
+		//变量运算
+		twoMembers = (int) (totalAmount/twoDollars);
+		totalAmount -= twoMembers*twoDollars;
+		
+		oneMembers = (int) (totalAmount/oneDollars);
+		totalAmount -= oneMembers*oneDollars;
+		
+		fiftyMembers = (int) (totalAmount/fiftyCents);
+		totalAmount -= fiftyMembers*fiftyCents;
+		
+		twentyMembers = (int) (totalAmount/twentyCents);
+		totalAmount -= twentyMembers*twentyCents;
+		
+		tenMembers = (int) (totalAmount/tenCents);
+		totalAmount -= tenMembers*tenCents;
+		
+		fiveMembers = (int) (totalAmount/fiveCents);
+		
+		//结果输出
+		System.out.println(twoMembers+"个2$");
+		System.out.println(oneMembers+"个1$");
+		System.out.println(fiftyMembers+"个50c");
+		System.out.println(twentyMembers+"个20c");
+		System.out.println(tenMembers+"个10c");
+		System.out.println(fiveMembers+"个5c");
+	}
+}
