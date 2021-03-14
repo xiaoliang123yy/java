@@ -1,0 +1,27 @@
+package week2;
+
+import java.util.Scanner;
+
+public class 水仙花数 {
+	public static void main(String[] args) {
+		//变量定义
+			int numberDigit;
+			int sum = 0;
+			
+			//数据输入
+			Scanner scan = new Scanner(System.in);
+			System.out.println("输入一个大于3小于7的整数：");
+			numberDigit = scan.nextInt();
+			//数据处理
+			for(int j = 100;j <= (int)Math.pow(10, numberDigit);j++){//从一百开始遍历
+				int num = j;
+			for(int m = 1;m <= numberDigit;m++){//将各个位上的数字按照位数求幂求和
+				sum += (int)Math.pow(j%10,numberDigit);
+				j /= 10;
+			}
+			if(sum == num){
+				System.out.println(num); 
+			}
+			}
+		}
+}
