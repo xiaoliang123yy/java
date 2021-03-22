@@ -1,0 +1,110 @@
+package week3;
+
+import java.util.Scanner;
+
+public class week31 {
+	public static double results[];
+	public static void main(String[] args) {
+		results = new double[5];
+		int choose = menu();
+		while(choose != 6){
+			switch(choose){
+			case 1:enterRetults();break;
+			case 2:
+				if(results[0] == 0){
+					System.out.println("请先输入成绩");
+					break;
+				}
+				System.out.println(classAverage());break;
+			case 3:
+				if(results[0] == 0){
+					System.out.println("请先输入成绩");
+					break;
+				}
+				System.out.println(hightestGrade());break;
+			case 4:
+				if(results[0] == 0){
+					System.out.println("请先输入成绩");
+					break;
+				}
+				System.out.println(lowestGrade());break;
+			case 5:
+				if(results[0] == 0){
+					System.out.println("请先输入成绩");
+					break;
+				}
+				sort();break;
+			default:System.out.println("输入无效");
+			}
+			choose = menu();
+		}
+		System.out.println("程序退出");
+	
+	}
+	public static int menu() {//返回用户选择
+		Scanner scan = new Scanner(System.in);
+		int choice = 0;
+		System.out.println("======GRADE======");
+		System.out.println("1、Enter Students Results");
+		System.out.println("2、Class Average");
+		System.out.println("3、Hightest Grade");
+		System.out.println("4、Lowest Grade");
+		System.out.println("5、Sort");
+		System.out.println("6、Exit");
+		System.out.print("请输入序号（1-5）：");
+		choice = scan.nextInt();
+		return choice;
+	}
+	public static void enterRetults() {
+		Scanner scan = new Scanner(System.in);
+		for(int i = 0;i < 5;i++){
+			boolean ok = true;
+			while(ok){
+				System.out.print("请输入第"+(i+1)+"位学生的成绩");
+				results[i] = scan.nextDouble();
+				if(results[i]<0 || results[i]>100){
+					System.out.println("输入成绩无效");
+				}
+				else{
+					ok = false;
+					break;
+				}
+			}
+		}
+	}
+	public static double classAverage() {
+		return (results[0]+results[1]+results[2]+results[3]+results[4])/5;
+	}
+	public static double hightestGrade() {
+		double key = results[0];
+		for(int i = 0;i < 4;i++){
+			if(key < results[i+1]){
+				key = results[i+1];
+			}
+		}
+		return key;
+	}
+	public static double lowestGrade(){
+		double key = results[0];
+		for(int i = 0;i < 4;i++){
+			if(key>results[i+1]){
+				key = results[i+1];
+			}
+		}
+		return key;
+	}
+	public static void sort() {
+		for(int i = 0;i < 4;i++) {
+			for(int j = 0;j < 4-i;j++) {
+				if(results[j] < results[j+1]) {
+					double item = results[j];
+					results[j] = results[j+1];
+					results[j+1] = item;
+				}
+			}
+		}
+		for(int m = 0;m < 5;m++)
+			System.out.println(results[m]);
+	}
+	
+}
