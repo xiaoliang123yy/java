@@ -1,0 +1,75 @@
+package week42;
+
+public class Adress {
+	public String country;
+	public String province;
+	public String city;
+	public String street;
+	public int postcode;
+	
+	public Adress(String country,String province,String city,String street,int postcode) {
+		this.country = country;
+		this.province = province;
+		this.city = city;
+		this.street = street;
+		this.postcode = postcode;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getProvince() {
+		return province;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public int getPostcode() {
+		return postcode;
+	}
+
+	public void setPostcode(int postcode) {
+		this.postcode = postcode;
+	}
+
+
+	public String print() {
+		return "Adress country=" + country + ", province=" + province + ", city=" + city + ", street=" + street
+				+ ", postcode=" + postcode;
+	}
+	
+}
+
+
+
+package week42;
+
+public class AdreesAdrive {
+	public static void main(String[] args) {
+		Adress a1 = new Adress("中国","湖北省","武汉市","江夏区",151510);
+		System.out.println(a1.print());
+	}
+}
