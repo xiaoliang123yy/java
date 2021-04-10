@@ -1,0 +1,29 @@
+package Bank;
+
+public class CheckingAccount extends BankAccount{
+	private double service;
+
+	public CheckingAccount() {
+		super();
+	}
+
+	public CheckingAccount(String accountNum, double balance, double service) {
+		super(accountNum, balance);
+		this.service = service;
+	}
+
+	public double getService() {
+		return service;
+	}
+
+	public void setService(double service) {
+		this.service = service;
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + "service = " + service  ;
+	}
+	
+	
+}
