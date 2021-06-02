@@ -1,0 +1,173 @@
+package Bank;
+
+import java.util.Scanner;
+
+public class Driver {
+
+	public static CheckingAccount ca;
+	public static SavingAccount sa;
+	public static Customer c;
+	
+	public static void main(String[] args) {
+		int choice = menu();
+		while (choice != 8) {
+			switch (choice) {
+			case 1:
+				CREATE();
+				break;
+			case 2:
+				if(sa == null) {
+					System.out.println("请先创建储存卡！！！");
+					break;
+				}
+				Save();
+				break;
+			case 3:
+				if(sa == null) {
+					System.out.println("请先创建储存卡！！！");
+					break;
+				}
+				Withdraw();
+				break;
+			case 4:
+				if(ca == null) {
+					System.out.println("请先创键信用卡！！！");
+					break;
+				}
+				Comsume();
+				break;
+			case 5:
+				if(ca == null) {
+					System.out.println("请先创键信用卡！！！");
+					break;
+				}
+				Repay();
+				break;
+			case 6:
+				if(ca == null && sa == null) {
+					System.out.println("还没创建任何卡！！！");
+					break;
+				}
+				Settle();
+				break;
+			case 7:
+				if(sa == null) {
+				System.out.println("请先创键储存卡！！！");
+				break;
+			}
+				Balance();
+				break;
+			}
+			choice = menu();
+		}
+	}
+
+	public static int menu() {
+		int choice = 0;
+		Scanner scan = new Scanner(System.in);
+		System.out.println("1.Create");
+		System.out.println("2.Save");
+		System.out.println("3.Withdraw");
+		System.out.println("4.Comsume");
+		System.out.println("5.Repay");
+		System.out.println("6.Dettle");
+		System.out.println("7.Balance");
+		System.out.println("8.Exit");
+		System.out.println("请输入你的选择：");
+		choice = scan.nextInt();
+		return choice;
+	}
+
+	public static int submenu() {
+		int choice = 0;
+		Scanner scan = new Scanner(System.in);
+		System.out.println("1.CheckingAccount");
+		System.out.println("2.SavingAccount");
+		System.out.println("请输入你的选择：");
+		choice = scan.nextInt();
+		return choice;
+	}
+	
+	public static void CREATE() {
+		int choice = submenu();
+			switch(choice) {
+			case 1:CreateChecking();
+			break;
+			case 2:CreateSaving();
+			break;
+		}
+	}
+	public static void CreateChecking() {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("请输入你的身份证号：");
+		String ssn = scan.next();
+		System.out.println("请输入你的姓名：");
+		String name = scan.next();
+		System.out.println("请输入你的年费：");
+		int fee = scan.nextInt();
+
+		Customer c = new Customer("ssn", "name", ca, null);
+		ca = new CheckingAccount("0000001", 0, fee);
+
+	}
+
+	public static void CreateSaving() {
+		Scanner scan = new Scanner (System.in);
+		System.out.println("请输入你的身份证号：");
+		String ssn = scan.next();
+		System.out.println("请输入你的姓名：");
+		String name = scan.next();
+		c = new Customer("ssn", "name", null, sa);
+		sa = new SavingAccount("100000", 0, 0.015);
+	}
+	
+	public static void Save() {
+		if(sa == null) {
+			System.out.println("请先创建储存卡！！！");
+		}
+		Scanner scan = new Scanner(System.in);
+		System.out.println("输入你要存入的金额：");
+		double balance = scan.nextDouble();
+		
+		sa.setBalance(sa.getBalance()+balance);
+	}
+	
+	public static void Withdraw() {
+		Scanner scan = new Scanner (System.in);
+		System.out.println("输入你想取出的金额：");
+		double balance = scan.nextDouble();
+		if(sa.getBalance()<balance) {
+			System.out.println("您的余额不足，无法取出！！");
+		}
+		else
+			sa.setBalance(sa.getBalance()-balance);
+	}
+	
+	public static void Comsume() {
+		Scanner scan = new Scanner (System.in);
+		System.out.println("请输入你想消费的金额");
+		double balance = scan.nextDouble();
+		ca.setBalance(ca.getBalance() + balance);
+	}
+	
+	public static void Repay() {
+		Scanner scan = new Scanner (System.in);
+		System.out.println("您所欠金额为：" + ca.getBalance() + "请输入你的还款金额：");
+		double balance = scan.nextDouble();
+		ca.setBalance(ca.getBalance() - balance);
+		if(ca.getBalance() > 0) {
+			System.out.println("您还欠" + ca.getBalance() + "元");
+		}
+		else
+			System.out.println("已还清");
+	}
+	
+	public static void Settle() {
+		System.out.println(c.toString());
+	}
+	
+	public static void Balance() {
+		System.err.println(sa.getBalance());
+	}
+
+}
