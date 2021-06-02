@@ -1,0 +1,32 @@
+package Driver;
+
+import java.util.ArrayList;
+
+import week.dao.StudentDao;
+import week.vo.Result;
+import week.vo.Student;
+
+public class Driver {
+
+	public static void main(String[] args) {
+		
+		// TODO Auto-generated method stub
+
+		StudentDao dao =new  StudentDao();
+		
+		ArrayList<Student> list= StudentDao.input();
+		int total =dao.count(list);
+		int maleCount =dao.countByGender(list, "nan");
+		int femaleCount =dao.countByGender(list, "nv");
+		ArrayList<Result> listResult = dao.statis(list);
+		
+		System.out.println(total);
+		System.out.println(maleCount);
+		System.out.println(femaleCount);
+for(Result result:listResult){
+	System.out.println(result.toString());
+}
+		
+	}
+
+}
