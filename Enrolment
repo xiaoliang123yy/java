@@ -1,0 +1,71 @@
+package SubjectEnrolment.copy;
+
+import java.util.Arrays;
+
+public class Enrolment {
+	public Subject list[];
+	public int count;
+	
+	public Enrolment(int max){
+		list = new Subject[max];
+		count = 0;
+	}
+	
+	public boolean add(Subject subject){
+		if(subject == null)
+			return false;
+		if(list.length <= count)
+			return false;
+		list[count] = subject;
+		count++;
+		return true;
+	}
+	
+	public boolean remove(int index){
+		if(index > count || index < 0)
+			return false;
+		else
+			list[index] = null;
+		for(int i = index;i < count; i++){
+			list[i] = list[i+1];
+		}
+		return true;
+	}
+	
+	public int indexOf(String id){
+		for(int i = 0; i <= count && list[i] != null; i++){
+			if(list[i].getId().equals(id))
+				return i;
+		}
+			return -1;
+	}
+
+	public Subject get(int index){
+		return list[index];
+	}
+	
+	public int size(){
+		return count;
+	}
+
+	public void display() {
+		for(int i = 0;i<count;i++) {
+			System.out.print(i+1 + ". ");
+			System.out.println(list[i]);
+		}
+
+	}
+	
+	public String toString() {
+		String msg = "";
+		for(int i = 0;i<count;i++) {
+			for(int j = 0;j<list[i].count;j++) {
+				msg += "Subject name: " + list[i].name + " Subject year: " + list[i].year + " Student id: " + list[i].list[j].id + " Student name: " + list[i].list[j].name;
+			}
+		}
+		
+		return msg;
+	}
+
+	
+}
