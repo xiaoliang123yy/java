@@ -1,0 +1,100 @@
+package SubjectEnrolment.copy;
+
+import java.util.Scanner;
+
+
+public class DRIVER {
+	
+	public static Enrolment enrolment = new Enrolment(5);
+	public static Subject subject;
+	
+	public static void main(String[] args) {
+		int choice = menu();
+		while(choice != 5){
+			switch(choice){
+			case 1:createSubject();break;
+			case 2:addStudent();break;
+			case 3:removeStuent();break;
+			case 4:print();break;
+			}
+			choice = menu();
+		}
+	}
+	
+	public static int menu(){
+		int choice = 0;
+		System.out.println("1.Create new Subject");
+		System.out.println("2.Add a student");
+		System.out.println("3.Remove a student");
+		System.out.println("4.Print subject details");
+		System.out.println("5.Exit");
+		System.out.println("Please enter your choice:");
+		Scanner scan = new Scanner(System.in);
+		choice = scan.nextInt();
+		return choice;
+	}
+	
+	public static void createSubject(){
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Please enter the name of the course:");
+		String name = scan.next();
+		System.out.println("Please enter the number of the course:");
+		String id = scan.next();
+		System.out.println("Please enter the year of the course");
+		int year = scan.nextInt();
+		System.out.println("Please enter the maximum number of student in the course:");
+		int max = scan.nextInt();
+		
+		subject = new Subject(name, id, year, max);
+		
+		enrolment.add(subject);
+	}
+	
+	public static void addStudent(){
+		Scanner scan = new Scanner(System.in);
+		enrolment.display();
+		System.out.println("Please enter the number of the course");
+		int number = scan.nextInt();
+		System.out.print("Please enter the student's name:");
+		String name = scan.next();
+		System.out.print("Please enter the student's id:");
+		String id = scan.next();
+		
+		Student student = new Student(name, id);
+		enrolment.get(number -1).add(student);
+		 
+		
+	}
+	
+	public static void removeStuent() {
+		Scanner scan = new Scanner(System.in);
+		enrolment.display();
+		System.out.println("Please enter the number of the course");
+		int number = scan.nextInt();
+		System.out.print("Please enter the student's id:");
+		String id = scan.next();
+		if(enrolment.get(number).indexOf(id) == -1)
+			System.out.println("You didn't join the course!");
+		else {
+			enrolment.get(number - 1).remove(enrolment.get(number).indexOf(id));
+			System.out.println("The selection was successfully withdrawn");
+		}
+			
+	}
+	public static void print() {
+		System.out.println(enrolment.toString());
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
