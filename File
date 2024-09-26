@@ -1,0 +1,40 @@
+package week11;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+
+public class file {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		try{
+			String fileName = "e:/test/1.dat";//读
+			File aFile = new File(fileName);
+			FileReader fr = new FileReader (aFile);
+			BufferedReader bf = new BufferedReader(fr);
+			String aline ="";
+			while((aline = bf.readLine())!=null){
+				System.out.println(aline);
+			}
+			String a = "sdadsafafafa";//写
+			File ofl = new File("e:/test/1.txt");
+			FileWriter fwt = new FileWriter(ofl);
+			PrintWriter pwt =  new PrintWriter(fwt);
+			pwt.println(a);
+			pwt.close();
+			
+			bf.close();
+			fr.close();
+		}
+		
+		catch(Exception e){
+			e.printStackTrace();
+		}
+
+	}
+
+}
