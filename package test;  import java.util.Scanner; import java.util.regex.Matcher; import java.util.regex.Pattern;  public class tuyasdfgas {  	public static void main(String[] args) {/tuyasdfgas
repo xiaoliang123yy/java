@@ -1,0 +1,26 @@
+package test;
+
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class tuyasdfgas {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		
+		String str = "(0\\d{2,3}-?)?[1,9]\\d{6,7}";
+		Scanner scan = new Scanner(System.in);
+		String phone = scan.nextLine();
+		Pattern p = Pattern.compile(str);
+		Matcher m = p.matcher(phone);
+		if(m.matches()){
+			System.out.println("ok");
+		}
+		else{
+			System.out.println("no");
+		}
+	}
+
+}
